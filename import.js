@@ -12,7 +12,7 @@ function startImport(category) {
             var sources = enSource.map(function (item) {
                 return item.id;
             })
-            var hours = new Date().getHours() - 24;
+            var hours = new Date().getHours() - 6;
             var month = new Date().getUTCMonth() + 1;
             var from = new Date().getUTCFullYear() + '-' + month + '-' + new Date().getUTCDate() + 'T' + hours + ':' + new Date().getUTCMinutes() + ':' + new Date().getUTCSeconds();
             console.log('Fetching results from: ' + from);
@@ -56,7 +56,7 @@ var categories = [
 ]
 var cron = require('node-cron');
 importContent(categories);
-cron.schedule('* * 24 * *', () => {
+cron.schedule('* * 6 * *', () => {
     importContent(categories);
 });
 
