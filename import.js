@@ -88,7 +88,7 @@ function loadPostInwordPress(content, category, client) {
         // is not specified
         status: 'publish'
     }
-    var uri = post.urlToImage;
+ /*   var uri = post.urlToImage;
     return new Promise(function (resolve, reject) {
         return request.head(uri, function (err, res, body) {
             console.log('content-type:', res.headers['content-type']);
@@ -115,19 +115,23 @@ function loadPostInwordPress(content, category, client) {
             console.log(data);
             return new Promise(function (resolve, reject) {
                 return client.uploadFile(data, function (response) {
-                    req.featured_media = 3;
+                    req.featured_media = 3; */
                     return client.newPost(req, function (error, posts) {
                         if (error) {
                             reject(error);
                         }
                         console.log('Post added!!');
                         resolve(posts);
-                    });
-                })
-            })
+                    })
+             //   })
+           // })
 
-        })
+     //   })
         .then(function () {
+            return loadPostInwordPress(content, category, client);
+        })
+        .catch(function(err){
+            console.log('Error:' +err);
             return loadPostInwordPress(content, category, client);
         })
 }
