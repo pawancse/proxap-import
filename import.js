@@ -40,6 +40,18 @@ var categories = [
         category: 'technology',
         id: 8
     },
+    {
+        category: 'business',
+        id: 8
+    },
+    {
+        category: 'entertainment',
+        id: 8
+    },
+    {
+        category: 'sports',
+        id: 8
+    }  
 
 ]
 var cron = require('node-cron');
