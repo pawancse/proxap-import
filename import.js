@@ -12,7 +12,7 @@ function startImport(category) {
             var sources = enSource.map(function (item) {
                 return item.id;
             })
-            var hours = new Date().getHours() - 1;
+            var hours = new Date().getHours() - 24;
             var month = new Date().getUTCMonth() + 1;
             var from = new Date().getUTCFullYear() + '-' + month + '-' + new Date().getUTCDate() + 'T' + hours + ':' + new Date().getUTCMinutes() + ':' + new Date().getUTCSeconds();
             console.log('Fetching results from: ' + from);
@@ -39,11 +39,12 @@ var categories = [
     {
         category: 'technology',
         id: 8
-    }
+    },
+
 ]
 var cron = require('node-cron');
 importContent(categories);
-cron.schedule('* * 1 * *', () => {
+cron.schedule('* * 24 * *', () => {
     importContent(categories);
   });
 
