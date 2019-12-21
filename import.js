@@ -7,7 +7,7 @@ function startImport(category) {
     return newsapi.v2.sources({})
         .then(function (response) {
             var enSource = response.sources.filter(function (item) {
-                return item.language == 'en' && item.category == category.category
+                return item.language == 'en' && item.category == category.category;
             })
             var sources = enSource.map(function (item) {
                 return item.id;
@@ -16,7 +16,7 @@ function startImport(category) {
             var month = new Date().getUTCMonth() + 1;
             var from = new Date().getUTCFullYear() + '-' + month + '-' + new Date().getUTCDate() + 'T' + hours + ':' + new Date().getUTCMinutes() + ':' + new Date().getUTCSeconds();
             console.log('Fetching results from: ' + from);
-            return newsapi.v2.everything({
+            return newsapi.v2.topHeadlines({
                 sources: sources,
                 from: from
             });
@@ -69,6 +69,9 @@ function importContent(cat) {
         .then(function () {
             return importContent(cat);
         })
+        .catch(function (err) {
+            return importContent(cat);
+        });
 };
 
 function loadPostInwordPress(content, category, client) {
@@ -86,7 +89,7 @@ function loadPostInwordPress(content, category, client) {
     var req = {
         // "title" and "content" are the only required properties
         title: post.title,
-        excerpt: '<p>Post by: ' + post.source.name + '</p><p>' + post.description + '</p>',
+        excerpt: post.source.name,
         content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a href="' + post.url + '">' + post.source.name + '</a></p><p> Category: ' + category.category + '</p>',
         //  tags: response.articles[0].source.name,
         //  author: response.articles[0].source.name,
