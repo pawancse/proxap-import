@@ -51,14 +51,14 @@ var categories = [
     {
         category: 'sports',
         id: 8
-    }  
+    }
 
 ]
 var cron = require('node-cron');
 importContent(categories);
 cron.schedule('* * 24 * *', () => {
     importContent(categories);
-  });
+});
 
 function importContent(cat) {
     if (cat.length == 0) {
@@ -100,50 +100,51 @@ function loadPostInwordPress(content, category, client) {
         // is not specified
         status: 'publish'
     }
- /*   var uri = post.urlToImage;
+    /*   var uri = post.urlToImage;
+       return new Promise(function (resolve, reject) {
+           return request.head(uri, function (err, res, body) {
+               console.log('content-type:', res.headers['content-type']);
+               console.log('content-length:', res.headers['content-length']);
+               return request(uri).pipe(fs.createWriteStream(filename + res.headers['content-type'].replace('image/', '.'))).on('close', function (result) {
+                   resolve(result)
+               });
+           });
+       })
+           .then(function (response) {
+               var type;
+               if (post.urlToImage.split('jpg').length >= 2) {
+                   type = 'jpeg'
+               }
+               else if (post.urlToImage.split('png').length >= 2) {
+                   type = 'png'
+               }
+               var readStream = fs.readFileSync(filename + '.' + type);
+               var data = {
+                   name: file + '.' + type,
+                   type: type,
+                   bits: readStream
+               };
+               console.log(data);*/
     return new Promise(function (resolve, reject) {
-        return request.head(uri, function (err, res, body) {
-            console.log('content-type:', res.headers['content-type']);
-            console.log('content-length:', res.headers['content-length']);
-            return request(uri).pipe(fs.createWriteStream(filename + res.headers['content-type'].replace('image/', '.'))).on('close', function (result) {
-                resolve(result)
-            });
-        });
-    })
-        .then(function (response) {
-            var type;
-            if (post.urlToImage.split('jpg').length >= 2) {
-                type = 'jpeg'
+        //   return client.uploadFile(data, function (response) {
+        //      req.featured_media = 3; 
+        return client.newPost(req, function (error, posts) {
+            if (error) {
+                reject(error);
             }
-            else if (post.urlToImage.split('png').length >= 2) {
-                type = 'png'
-            }
-            var readStream = fs.readFileSync(filename + '.' + type);
-            var data = {
-                name: file + '.' + type,
-                type: type,
-                bits: readStream
-            };
-            console.log(data);
-            return new Promise(function (resolve, reject) {
-                return client.uploadFile(data, function (response) {
-                    req.featured_media = 3; */
-                    return client.newPost(req, function (error, posts) {
-                        if (error) {
-                            reject(error);
-                        }
-                        console.log('Post added!!');
-                        resolve(posts);
-                    })
-             //   })
-           // })
+            console.log('Post added!!');
+            resolve(posts);
+        })
 
-     //   })
+    })
+        // })
+
+        //   })
         .then(function () {
             return loadPostInwordPress(content, category, client);
         })
-        .catch(function(err){
-            console.log('Error:' +err);
+        .catch(function (err) {
+            console.log('Error:' + err);
             return loadPostInwordPress(content, category, client);
         })
 }
