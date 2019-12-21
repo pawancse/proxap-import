@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "node import.js"
+  },
+  "dependencies": {
+    "newsapi": "^2.4.0",
+    "node-cron": "^2.0.3",
+    "request": "^2.88.0",
+    "wordpress": "^1.4.1",
+    "wpapi": "^1.2.1"
+  }
+}
