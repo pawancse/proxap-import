@@ -42,6 +42,7 @@ var categories = [
     }
 ]
 var cron = require('node-cron');
+importContent(categories);
 cron.schedule('* * 1 * *', () => {
     importContent(categories);
   });
