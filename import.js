@@ -195,7 +195,7 @@ function callNewsApi(sources, from, page, category) {
             return loadPostInwordPress(response.articles, category, client);
         })
         .then(function () {
-            if ((totalHits / 100) > page){
+            if ((totalHits / 100) > page&& page <2){
                 return callNewsApi(sources, from, page + 1, category);
             }
             else {
