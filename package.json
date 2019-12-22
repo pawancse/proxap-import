@@ -3,6 +3,7 @@
     "start": "node import.js"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "newsapi": "^2.4.0",
     "node-cron": "^2.0.3",
     "request": "^2.88.0",
