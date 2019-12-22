@@ -12,7 +12,7 @@ function startImport(category) {
             var sources = enSource.map(function (item) {
                 return item.id;
             })
-            var hours = new Date().getHours() - 6;
+            var hours = new Date().getHours() - 4;
             var month = new Date().getUTCMonth() + 1;
             var from = new Date().getUTCFullYear() + '-' + month + '-' + new Date().getUTCDate() + 'T' + hours + ':' + new Date().getUTCMinutes() + ':' + new Date().getUTCSeconds();
             return callNewsApi(sources, from, 1, category);
@@ -57,22 +57,22 @@ var categories = [
 ]
 //avoid heruku error
 var express = require('express');
-var app     = express();
+var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
 
 //For avoidong Heroku $PORT error
-app.get('/', function(request, response) {
+app.get('/', function (request, response) {
     var result = 'App is running'
     response.send(result);
-}).listen(app.get('port'), function() {
+}).listen(app.get('port'), function () {
     console.log('App is running, server is listening on port ', app.get('port'));
 });
 
 var cron = require('node-cron');
 importContent(categories);
-cron.schedule('* * 6 * *', () => {
+cron.schedule('* * 1 * *', () => {
     importContent(categories);
 });
 
@@ -108,17 +108,21 @@ function loadPostInwordPress(content, category, client) {
         excerpt: post.source.name,
         content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a href="' + post.url + '">' + post.source.name + '</a></p><p> Category: ' + category.category + '</p>',
         //  tags: response.articles[0].source.name,
-        //  author: response.articles[0].source.name,
-        link: post.url,
+        //author: post.source.name,
         /*  categories: [
               response.articles[0].source.name
           ],*/
         //  featured_media: response.articles[0].urlToImage,
-        categories: category.category,
+        termNames: {
+            "category": [category.category],
+            "post_tag": [category.category, post.source.name]
+        },
+        media_urls: post.urlToImage,
         // Post will be created as a draft by default if a specific "status"
         // is not specified
         status: 'publish'
     }
+    console.log(req);
     /*   var uri = post.urlToImage;
        return new Promise(function (resolve, reject) {
            return request.head(uri, function (err, res, body) {
