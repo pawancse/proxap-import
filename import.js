@@ -86,7 +86,7 @@ function importContent(cat) {
             return importContent(cat);
         })
         .catch(function (err) {
-            return importContent(cat);
+            return;
         });
 };
 
