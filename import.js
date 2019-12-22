@@ -18,7 +18,9 @@ function startImport(category) {
             console.log('Fetching results from: ' + from);
             return newsapi.v2.topHeadlines({
                 sources: sources,
-                from: from
+                from: from,
+                country: 'in',
+                pageSize: 100
             });
         })
         .then(function (response) {
