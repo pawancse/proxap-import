@@ -1,6 +1,6 @@
 
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('84ceeae538484b96a2d7bdddb0788353');
+const newsapi = new NewsAPI('156ecc3cec95403a9cead389cfa4360a');
 function startImport(category) {
     // To query /v2/top-headlines
     // All options passed to topHeadlines are optional, but you need to include at least one of them
@@ -114,7 +114,7 @@ function loadPostInwordPress(content, category, client) {
               response.articles[0].source.name
           ],*/
         //  featured_media: response.articles[0].urlToImage,
-        categories: [category.id],
+        categories: category.category,
         // Post will be created as a draft by default if a specific "status"
         // is not specified
         status: 'publish'
@@ -197,6 +197,6 @@ function callNewsApi(sources, from, page, category) {
         })
         .catch(function (err) {
             console.log(err);
-            return callNewsApi(sources, from, page + 1, category);
+            return;
         })
 }
