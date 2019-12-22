@@ -31,15 +31,27 @@ var categories = [
     },
     {
         category: 'business',
-        id: 8
+        id: 2
     },
     {
         category: 'entertainment',
-        id: 8
+        id: 3
     },
     {
         category: 'sports',
-        id: 8
+        id: 7
+    },
+    {
+        category: 'general',
+        id: 6
+    },
+    {
+        category: 'health',
+        id: 5
+    },
+    {
+        category: 'science',
+        id: 6
     }
 
 ]
