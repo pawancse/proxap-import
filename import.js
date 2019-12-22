@@ -1,7 +1,7 @@
 
+const NewsAPI = require('newsapi');
+const newsapi = new NewsAPI('84ceeae538484b96a2d7bdddb0788353');
 function startImport(category) {
-    const NewsAPI = require('newsapi');
-    const newsapi = new NewsAPI('84ceeae538484b96a2d7bdddb0788353');
     // To query /v2/top-headlines
     // All options passed to topHeadlines are optional, but you need to include at least one of them
     return newsapi.v2.sources({})
@@ -15,22 +15,10 @@ function startImport(category) {
             var hours = new Date().getHours() - 6;
             var month = new Date().getUTCMonth() + 1;
             var from = new Date().getUTCFullYear() + '-' + month + '-' + new Date().getUTCDate() + 'T' + hours + ':' + new Date().getUTCMinutes() + ':' + new Date().getUTCSeconds();
-            console.log('Fetching results from: ' + from);
-            return newsapi.v2.topHeadlines({
-                from: from,
-                country: 'in',
-                pageSize: 100
-            });
+            return callNewsApi(sources, from, 1, category);
         })
         .then(function (response) {
-            console.log('Received Items: ' + response.totalResults);
-            var wordpress = require("wordpress");
-            var client = wordpress.createClient({
-                url: "https://proxap.in/",
-                username: "admin",
-                password: "a2XjCa$X$3"
-            });
-            return loadPostInwordPress(response.articles, category, client);
+
         })
         .catch(function (err) {
             console.log(err);
@@ -150,5 +138,38 @@ function loadPostInwordPress(content, category, client) {
         .catch(function (err) {
             console.log('Error:' + err);
             return loadPostInwordPress(content, category, client);
+        })
+}
+
+function callNewsApi(sources, from, page, category) {
+    var totalHits;
+    return newsapi.v2.everything({
+        from: from,
+        sortBy: 'popularity',
+        sources: sources,
+        pageSize: 100
+    })
+        .then(function (response) {
+            console.log('Received Items: ' + response.totalResults);
+            totalHits = response.totalResults;
+            var wordpress = require("wordpress");
+            var client = wordpress.createClient({
+                url: "https://proxap.in/",
+                username: "admin",
+                password: "a2XjCa$X$3"
+            });
+            return loadPostInwordPress(response.articles, category, client);
+        })
+        .then(function () {
+            if ((totalHits / 100) > page) {
+                return callNewsApi(sources, from, page + 1, category);
+            }
+            else {
+                return;
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+            return callNewsApi(sources, from, page + 1, category);
         })
 }
