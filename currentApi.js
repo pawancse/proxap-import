@@ -1,7 +1,7 @@
-exports.module.nationalNews = function () {
+module.exports.nationalNews = function () {
     const CurrentsAPI = require('currentsapi');
     const currentsapi = new CurrentsAPI('sSLjPypWDAV3JI0FGYJzJCfG1y-6iIafZNLZ5TaLZzU9XTBb');
-    var hours = new Date().getHours() - 4;
+    var hours = new Date().getHours() - 12;
     var month = new Date().getUTCMonth() + 1;
     var from = new Date().getUTCFullYear() + '-' + month + '-' + new Date().getUTCDate() + 'T' + hours + ':' + new Date().getUTCMinutes() + ':' + new Date().getUTCSeconds();
     currentsapi.search({
