@@ -52,7 +52,7 @@ module.exports.nationalNews = function () {
                 "category": [category],
                 "post_tag": [category]
             },
-            media_urls: post.image,
+            media_urls: [post.image],
             // Post will be created as a draft by default if a specific "status"
             // is not specified
             status: 'publish'

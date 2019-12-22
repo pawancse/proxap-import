@@ -120,7 +120,7 @@ function loadPostInwordPress(content, category, client) {
             "category": [category.category],
             "post_tag": [category.category, post.source.name]
         },
-        media_urls: post.urlToImage,
+        media_urls: [post.urlToImage],
         // Post will be created as a draft by default if a specific "status"
         // is not specified
         status: 'publish'
@@ -195,7 +195,7 @@ function callNewsApi(sources, from, page, category) {
             return loadPostInwordPress(response.articles, category, client);
         })
         .then(function () {
-            if ((totalHits / 100) > page) {
+            if ((totalHits / 100) > page){
                 return callNewsApi(sources, from, page + 1, category);
             }
             else {
