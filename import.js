@@ -17,7 +17,6 @@ function startImport(category) {
             var from = new Date().getUTCFullYear() + '-' + month + '-' + new Date().getUTCDate() + 'T' + hours + ':' + new Date().getUTCMinutes() + ':' + new Date().getUTCSeconds();
             console.log('Fetching results from: ' + from);
             return newsapi.v2.topHeadlines({
-                sources: sources,
                 from: from,
                 country: 'in',
                 pageSize: 100
