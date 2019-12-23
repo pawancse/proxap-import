@@ -12,7 +12,9 @@ module.exports.googleNews = function () {
             var tags = result.default.trendingSearchesDays[0].trendingSearches[0].relatedQueries.map(function (item) {
                 return item.query;
             });
-            tags.length = 5;
+            if (tags.length > 5) {
+                tags.length = 5;
+            }
             return createPost(result.default.trendingSearchesDays[0].trendingSearches[0].articles, 'National', client, tags);
         })
         .catch(function (err) {
