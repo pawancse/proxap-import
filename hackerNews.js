@@ -1,33 +1,28 @@
-module.exports.nationalNews = function () {
-    const CurrentsAPI = require('currentsapi');
-    const currentsapi = new CurrentsAPI('sSLjPypWDAV3JI0FGYJzJCfG1y-6iIafZNLZ5TaLZzU9XTBb');
-    var hours = new Date().getHours() - 12;
-    var month = new Date().getUTCMonth() + 1;
-    var from = new Date().getUTCFullYear() + '-' + month + '-' + new Date().getUTCDate() + 'T' + hours + ':' + new Date().getUTCMinutes() + ':' + new Date().getUTCSeconds();
-    return currentsapi.search({
-        keywords: '',
-        language: 'en',
-        country: 'IN',
-        type: 1,
-        start_date: from
-    }).then(response => {
-        console.log(response);
-        var wordpress = require("wordpress");
-        var client = wordpress.createClient({
-            url: "http://proxap.in/",
-            username: "admin",
-            password: "a2XjCa$X$3"
-        });
-        loadPostInwordPress(response.news, 'National', client)
-        /*
-          {
-            status: "ok",
-            news: [...]
-          }
-        */
-    });
+module.exports.hackerNews = function () {
+    var hn = require('hackernews-api');
+    return new Promise(function (resolve, reject) {
+        var response = hn.getTopStories()
+        resolve(response);
+    })
+        .then(function (res) {
+            res = res.slice(0, 50);
+            return Promise.all(
+                res.map(function (item) {
+                    return hn.getItem(item);
+                })
+            )
+        })
+        .then(function (res) {
+            var wordpress = require("wordpress");
+            var client = wordpress.createClient({
+                url: "http://proxap.in/",
+                username: "admin",
+                password: "a2XjCa$X$3"
+            });
+            return createPost(res, 'hacker news', client)
+        })
 
-    function loadPostInwordPress(content, category, client) {
+    function createPost(content, category, client) {
         console.log('Creating POST to Wordpress..');
         var fs = require('fs'),
             request = require('request');
@@ -35,13 +30,12 @@ module.exports.nationalNews = function () {
             return;
         }
         var post = content.pop();
-        var contentToPost = post.description.substring(0, 250);
         var contentType;
         var req = {
             // "title" and "content" are the only required properties
             title: post.title,
-            excerpt: post.author,
-            content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a href="' + post.url + '">' + post.author + '</a></p><p> Category: ' + category + '</p>',
+            excerpt: post.source,
+            content: '<p> For complete news please follow article link on <a href="' + post.url + '">' + post.by + '</a></p><p> Category: ' + post.type + '</p>',
             //  tags: response.articles[0].source.name,
             //author: post.source.name,
             /*  categories: [
@@ -50,9 +44,9 @@ module.exports.nationalNews = function () {
             //  featured_media: response.articles[0].urlToImage,
             termNames: {
                 "category": [category],
-                "post_tag": [category]
+                "post_tag": [post.type]
             },
-            media_urls: [post.image],
+            media_urls: [post.url],
             // Post will be created as a draft by default if a specific "status"
             // is not specified
             status: 'publish'
@@ -99,11 +93,11 @@ module.exports.nationalNews = function () {
 
             //   })
             .then(function () {
-                return loadPostInwordPress(content, category, client);
+                return createPost(content, category, client);
             })
             .catch(function (err) {
                 console.log('Error:' + err);
-                return loadPostInwordPress(content, category, client);
+                return createPost(content, category, client);
             })
     }
 }

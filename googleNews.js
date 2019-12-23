@@ -1,6 +1,6 @@
 module.exports.googleNews = function () {
     const googleTrends = require('google-trends-api');
-    googleTrends.dailyTrends({ geo: 'IN' })
+    return googleTrends.dailyTrends({ geo: 'IN' })
         .then(function (results) {
             var wordpress = require("wordpress");
             var client = wordpress.createClient({

@@ -68,20 +68,21 @@ app.get('/', function (request, response) {
     response.send(result);
 }).listen(app.get('port'), function () {
     console.log('App is running, server is listening on port ', app.get('port'));
+    return national.nationalNews()
+        .then(function () {
+            return googleNews.googleNews();
+        })
+        .then(function () {
+            return importContent(categories);
+        })
+        .then(function () {
+            return hacker.hackerNews();
+        })
 });
 
-var cron = require('node-cron');
 var national = require('./currentApi');
 var googleNews = require('./googleNews');
-national.nationalNews();
-importContent(categories);
-googleNews.googleNews();
-return cron.schedule('* * 1 * *', () => {
-    national.nationalNews();
-    importContent(categories);
-    googleNews.googleNews();
-})
-
+var hacker = require('./hackerNews');
 
 function importContent(cat) {
     if (cat.length == 0) {
