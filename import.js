@@ -71,15 +71,15 @@ app.use(haltOnTimedout)
 //For avoidong Heroku $PORT error
 app.get('/', function (request, response) {
     var result = 'App is running'
-    return hacker.hackerNews()
+    return importContent(categories)
         .then(function () {
             return national.nationalNews();
         })
         .then(function () {
-            return importContent(categories);
+            return googleNews.googleNews();
         })
         .then(function () {
-            return googleNews.googleNews();
+            return hacker.hackerNews()
         })
         .then(function (res) {
             response.send(result);

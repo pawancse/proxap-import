@@ -5,7 +5,7 @@ module.exports.hackerNews = function () {
         resolve(response);
     })
         .then(function (res) {
-            res = res.slice(0, 50);
+            res = res.slice(0, 5);
             return Promise.all(
                 res.map(function (item) {
                     return hn.getItem(item);
