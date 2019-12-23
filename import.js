@@ -58,13 +58,16 @@ var categories = [
     }
 
 ]
+
+var timeout = require('connect-timeout')
 //avoid heruku error
 var express = require('express');
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
-
+app.use(timeout('600s'))
+app.use(haltOnTimedout)
 //For avoidong Heroku $PORT error
 app.get('/', function (request, response) {
     var result = 'App is running'
@@ -78,10 +81,16 @@ app.get('/', function (request, response) {
         .then(function () {
             return hacker.hackerNews();
         })
-    response.send(result);
+        .then(function(res){
+            response.send(result);
+        })
 }).listen(app.get('port'), function () {
     console.log('App is running, server is listening on port ', app.get('port'));
 });
+
+function haltOnTimedout (req, res, next) {
+    if (!req.timedout) next()
+  }
 
 function importContent(cat) {
     if (cat.length == 0) {

@@ -3,6 +3,7 @@
     "start": "node import.js"
   },
   "dependencies": {
+    "connect-timeout": "^1.9.0",
     "currentsapi": "^0.1.0",
     "express": "^4.17.1",
     "google-trends-api": "^4.9.0",
