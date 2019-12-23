@@ -41,7 +41,7 @@ module.exports.nationalNews = function () {
             // "title" and "content" are the only required properties
             title: post.title,
             excerpt: post.author,
-            content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a href="' + post.url + '">' + post.author + '</a></p><p> Category: ' + category + '</p>',
+            content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a href="' + post.url + ' target="_blank"">' + post.author + '</a></p><p> Category: ' + category + '</p>',
             //  tags: response.articles[0].source.name,
             //author: post.source.name,
             /*  categories: [

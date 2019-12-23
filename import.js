@@ -122,7 +122,7 @@ function loadPostInwordPress(content, category, client) {
         // "title" and "content" are the only required properties
         title: post.title,
         excerpt: post.source.name,
-        content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a href="' + post.url + '">' + post.source.name + '</a></p><p> Category: ' + category.category + '</p>',
+        content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a href="' + post.url + '" target="_blank">' + post.source.name + '</a></p><p> Category: ' + category.category + '</p>',
         //  tags: response.articles[0].source.name,
         //author: post.source.name,
         /*  categories: [
