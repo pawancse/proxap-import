@@ -4,7 +4,7 @@ module.exports.googleNews = function () {
         .then(function (results) {
             var wordpress = require("wordpress");
             var client = wordpress.createClient({
-                url: "http://proxap.in/",
+                url: "https://proxap.in/",
                 username: "admin",
                 password: "a2XjCa$X$3"
             });
