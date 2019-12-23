@@ -194,7 +194,7 @@ function callNewsApi(sources, from, page, category) {
         from: from,
         sortBy: 'popularity',
         sources: sources,
-        pageSize: 100
+        pageSize: 50
     })
         .then(function (response) {
             console.log('Received Items: ' + response.totalResults);
