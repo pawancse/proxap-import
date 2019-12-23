@@ -73,7 +73,6 @@ app.get('/', function (request, response) {
 var cron = require('node-cron');
 var national = require('./currentApi');
 national.nationalNews();
-importContent(categories);
 return cron.schedule('* * 1 * *', () => {
     national.nationalNews();
     importContent(categories);
