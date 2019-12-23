@@ -1,6 +1,9 @@
 
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('156ecc3cec95403a9cead389cfa4360a');
+var national = require('./currentApi');
+var googleNews = require('./googleNews');
+var hacker = require('./hackerNews');
 function startImport(category) {
     // To query /v2/top-headlines
     // All options passed to topHeadlines are optional, but you need to include at least one of them
@@ -79,12 +82,6 @@ app.get('/', function (request, response) {
 }).listen(app.get('port'), function () {
     console.log('App is running, server is listening on port ', app.get('port'));
 });
-
-
-
-var national = require('./currentApi');
-var googleNews = require('./googleNews');
-var hacker = require('./hackerNews');
 
 function importContent(cat) {
     if (cat.length == 0) {
