@@ -14,7 +14,7 @@ module.exports.nationalNews = function () {
         console.log(response);
         var wordpress = require("wordpress");
         var client = wordpress.createClient({
-            url: "https://proxap.in/",
+            url: "http://proxap.in/",
             username: "admin",
             password: "a2XjCa$X$3"
         });
