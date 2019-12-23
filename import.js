@@ -73,13 +73,13 @@ app.get('/', function (request, response) {
     var result = 'App is running'
     return hacker.hackerNews()
         .then(function () {
-            return googleNews.googleNews();
+            return national.nationalNews();
         })
         .then(function () {
             return importContent(categories);
         })
         .then(function () {
-            return national.nationalNews()
+            return googleNews.googleNews();
         })
         .then(function (res) {
             response.send(result);
