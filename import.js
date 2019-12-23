@@ -74,10 +74,11 @@ var cron = require('node-cron');
 var national = require('./currentApi');
 national.nationalNews();
 importContent(categories);
-cron.schedule('* * 1 * *', () => {
+return cron.schedule('* * 1 * *', () => {
     national.nationalNews();
     importContent(categories);
-});
+})
+
 
 function importContent(cat) {
     if (cat.length == 0) {
@@ -195,7 +196,7 @@ function callNewsApi(sources, from, page, category) {
             return loadPostInwordPress(response.articles, category, client);
         })
         .then(function () {
-            if ((totalHits / 100) > page&& page <2){
+            if ((totalHits / 100) > page && page < 2) {
                 return callNewsApi(sources, from, page + 1, category);
             }
             else {
