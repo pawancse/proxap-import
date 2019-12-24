@@ -15,7 +15,7 @@ module.exports.hackerNews = function () {
         .then(function (res) {
             var wordpress = require("wordpress");
             var client = wordpress.createClient({
-                url: "https://proxap.in/",
+                url: "http://proxap.in/",
                 username: "admin",
                 password: "a2XjCa$X$3"
             });
@@ -97,6 +97,12 @@ module.exports.hackerNews = function () {
             })
             .catch(function (err) {
                 console.log('Error:' + err);
+                var wordpress = require("wordpress");
+                client = wordpress.createClient({
+                    url: "https://proxap.in/",
+                    username: "admin",
+                    password: "a2XjCa$X$3"
+                });
                 return createPost(content, category, client);
             })
     }
