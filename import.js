@@ -68,19 +68,10 @@ app.use(haltOnTimedout)
 //For avoidong Heroku $PORT error
 app.get('/', function (request, response) {
     var result = 'App is running'
-    return importContent(categories)
-        .then(function () {
-            return national.nationalNews();
-        })
-        .then(function () {
-            return googleNews.googleNews();
-        })
-        .then(function () {
-            return hacker.hackerNews()
-        })
-        .then(function (res) {
-            response.send(result);
-        })
+    importContent(categories)
+    national.nationalNews();
+    googleNews.googleNews();
+    hacker.hackerNews()
 }).listen(app.get('port'), function () {
     console.log('App is running, server is listening on port ', app.get('port'));
 });
