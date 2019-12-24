@@ -20,9 +20,6 @@ function startImport(category) {
             var from = new Date().getUTCFullYear() + '-' + month + '-' + new Date().getUTCDate() + 'T' + hours + ':' + new Date().getUTCMinutes() + ':' + new Date().getUTCSeconds();
             return callNewsApi(sources, from, 1, category);
         })
-        .then(function (response) {
-
-        })
         .catch(function (err) {
             console.log(err);
         })
