@@ -34,13 +34,13 @@ module.exports.movieNews = function () {
             mov.forEach(function (item) {
                 requiredObj.title = item.title;
                 requiredObj.excerpt = 'Release Date' + item.release_date
-                requiredObj.content = '<p> A Rated(18+): ' + item.adult + '/p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
+                requiredObj.content = '<p> A Rated(18+): ' + item.adult + '</p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
                     requiredObj.termNames.category = ['Indian Movie', 'Upcoming Movie'];
                 requiredObj.termNames.post_tag = ['Indian Movie', 'Upcoming Movie'];
                 finalPost.push({
                     title: item.title,
                     excerpt: 'Release Date' + item.release_date,
-                    content: '<p> A Rated(18+): ' + item.adult + '/p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
+                    content: '<p> A Rated(18+): ' + item.adult + '</p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
                     termNames: {
                         category: ['Indian Movie', 'Upcoming Movie'],
                         post_tag: ['Indian Movie', 'Upcoming Movie']
@@ -62,7 +62,7 @@ module.exports.movieNews = function () {
                 finalPost.push({
                     title: item.title,
                     excerpt: 'Release Date' + item.release_date,
-                    content: '<p> A Rated(18+): ' + item.adult + '/p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
+                    content: '<p> A Rated(18+): ' + item.adult + '</p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
                     termNames: {
                         category: ['Indian Movie', 'Upcoming Movie'],
                         post_tag: ['Indian Movie', 'Upcoming Movie']
@@ -84,7 +84,7 @@ module.exports.movieNews = function () {
                 finalPost.push({
                     title: item.title,
                     excerpt: 'Release Date' + item.release_date,
-                    content: '<p> A Rated(18+): ' + item.adult + '/p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
+                    content: '<p> A Rated(18+): ' + item.adult + '</p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
                     termNames: {
                         category: ['Indian Movie', 'Upcoming Movie'],
                         post_tag: ['Indian Movie', 'Upcoming Movie']
