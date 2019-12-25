@@ -150,7 +150,7 @@ module.exports.movieNews = function () {
                 if (error) {
                     reject(error);
                 }
-                console.log('Post added!!');
+                console.log('Post added: ' + req.title);
                 resolve(posts);
             })
 

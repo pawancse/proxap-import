@@ -51,7 +51,6 @@ module.exports.hackerNews = function () {
             // is not specified
             status: 'publish'
         }
-        console.log(req);
         /*   var uri = post.urlToImage;
            return new Promise(function (resolve, reject) {
                return request.head(uri, function (err, res, body) {
@@ -84,7 +83,7 @@ module.exports.hackerNews = function () {
                 if (error) {
                     reject(error);
                 }
-                console.log('Post added!!');
+                console.log('Post added: ' + req.title);
                 resolve(posts);
             })
 

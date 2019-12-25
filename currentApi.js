@@ -11,7 +11,6 @@ module.exports.nationalNews = function () {
         type: 1,
         start_date: from
     }).then(response => {
-        console.log(response);
         var wordpress = require("wordpress");
         var client = wordpress.createClient({
             url: "http://proxap.in/",
@@ -57,7 +56,6 @@ module.exports.nationalNews = function () {
             // is not specified
             status: 'publish'
         }
-        console.log(req);
         /*   var uri = post.urlToImage;
            return new Promise(function (resolve, reject) {
                return request.head(uri, function (err, res, body) {
@@ -90,7 +88,7 @@ module.exports.nationalNews = function () {
                 if (error) {
                     reject(error);
                 }
-                console.log('Post added!!');
+                console.log('Post added: ' + req.title);
                 resolve(posts);
             })
 

@@ -69,11 +69,42 @@ app.use(haltOnTimedout)
 //For avoidong Heroku $PORT error
 app.get('/', function (request, response) {
     var result = 'App is running'
-    movie.movieNews();
-    importContent(categories)
-    national.nationalNews();
-    googleNews.googleNews();
-    hacker.hackerNews()
+    return movie.movieNews()
+        .catch(function (err) {
+            console.log('Error in loading Movie post:' + err);
+            return importContent(categories);
+        })
+        .then(function () {
+            return importContent(categories);
+        })
+        .catch(function(err){
+            console.log('Error in loading importContent'+ err);
+            return national.nationalNews();
+        })
+        .then(function(){
+            return national.nationalNews();
+        })
+        .catch(function(err){
+            console.log('Error in loading NationalNews'+ err);
+            return googleNews.googleNews();
+        })
+        .then(function(){
+            return googleNews.googleNews();
+        })
+        .catch(function (err) {
+            console.log('Error in loading google news'+ err);
+            return hacker.hackerNews();
+        })
+        .then(function(){
+            return hacker.hackerNews();
+        })
+        .catch(function(err){
+            console.log('Error in loading hacker news'+ err);
+        })
+        .then(function(){
+            console.log('All Posts loaded successfully');
+        })
+
 }).listen(app.get('port'), function () {
     console.log('App is running, server is listening on port ', app.get('port'));
 });
@@ -160,7 +191,7 @@ function loadPostInwordPress(content, category, client) {
             if (error) {
                 reject(error);
             }
-            console.log('Post added!!');
+            console.log('Post added: ' + req.title);
             resolve(posts);
         })
 
