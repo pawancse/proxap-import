@@ -92,7 +92,7 @@ module.exports.movieNews = function () {
             console.log(finalPost.length);
             var wordpress = require("wordpress");
             var client = wordpress.createClient({
-                url: "https://proxap.in/",
+                url: "http://proxap.in/",
                 username: "admin",
                 password: "a2XjCa$X$3"
             });

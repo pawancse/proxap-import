@@ -103,7 +103,7 @@ module.exports.nationalNews = function () {
                 console.log('Error:' + err);
                 var wordpress = require("wordpress");
                 client = wordpress.createClient({
-                    url: "https://proxap.in/",
+                    url: "http://proxap.in/",
                     username: "admin",
                     password: "a2XjCa$X$3"
                 });
