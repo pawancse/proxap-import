@@ -2,7 +2,6 @@
 module.exports.movieNews = function () {
     var request = require('request');
     var finalPost = [];
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
     var option = {
         url: 'https://api.themoviedb.org/3/movie/upcoming',
         qs: {
