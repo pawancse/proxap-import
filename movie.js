@@ -37,6 +37,11 @@ module.exports.movieNews = function () {
                     requiredObj.termNames.category = ['Indian Movie', 'Upcoming Movie'];
                 requiredObj.termNames.post_tag = ['Indian Movie', 'Upcoming Movie'];
                 finalPost.push(requiredObj);
+                requiredObj.title = null;
+                requiredObj.excerpt = null;
+                requiredObj.requiredObj =null;
+                requiredObj.termNames.category =null;
+                requiredObj.termNames.post_tag = null;
             });
             console.log(finalPost.length);
             option.url = 'https://api.themoviedb.org/3/movie/top_rated';
@@ -55,6 +60,11 @@ module.exports.movieNews = function () {
                     requiredObj.termNames.category = ['Indian Movie', 'Top Rated Movie'];
                 requiredObj.termNames.post_tag = ['Indian Movie', 'Top Rated Movie'];
                 finalPost.push(requiredObj);
+                requiredObj.title = null;
+                requiredObj.excerpt = null;
+                requiredObj.requiredObj =null;
+                requiredObj.termNames.category =null;
+                requiredObj.termNames.post_tag = null;
             });
             console.log(finalPost.length);
             option.url = 'https://api.themoviedb.org/3/movie/popular';
@@ -73,6 +83,11 @@ module.exports.movieNews = function () {
                     requiredObj.termNames.category = ['Indian Movie', 'Popular Movie'];
                 requiredObj.termNames.post_tag = ['Indian Movie', 'Popular Movie'];
                 finalPost.push(requiredObj);
+                requiredObj.title = null;
+                requiredObj.excerpt = null;
+                requiredObj.requiredObj =null;
+                requiredObj.termNames.category =null;
+                requiredObj.termNames.post_tag = null;
             });
             console.log(finalPost.length);
             var wordpress = require("wordpress");
