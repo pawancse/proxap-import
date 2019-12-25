@@ -29,6 +29,7 @@ module.exports.movieNews = function () {
         });
     })
         .then(function (response) {
+            console.log(JSON.parse(response.body).results);
             var mov = JSON.parse(response.body).results;
             mov.forEach(function (item) {
                 requiredObj.title = item.title;
@@ -36,12 +37,16 @@ module.exports.movieNews = function () {
                 requiredObj.content = '<p> A Rated(18+): ' + item.adult + '/p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
                     requiredObj.termNames.category = ['Indian Movie', 'Upcoming Movie'];
                 requiredObj.termNames.post_tag = ['Indian Movie', 'Upcoming Movie'];
-                finalPost.push(requiredObj);
-                requiredObj.title = null;
-                requiredObj.excerpt = null;
-                requiredObj.requiredObj =null;
-                requiredObj.termNames.category =null;
-                requiredObj.termNames.post_tag = null;
+                finalPost.push({
+                    title: item.title,
+                    excerpt: 'Release Date' + item.release_date,
+                    content: '<p> A Rated(18+): ' + item.adult + '/p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
+                    termNames: {
+                        category: ['Indian Movie', 'Upcoming Movie'],
+                        post_tag: ['Indian Movie', 'Upcoming Movie']
+                    },
+                    status: 'publish'
+                });
             });
             console.log(finalPost.length);
             option.url = 'https://api.themoviedb.org/3/movie/top_rated';
@@ -54,17 +59,16 @@ module.exports.movieNews = function () {
         .then(function (response) {
             var mov = JSON.parse(response.body).results;
             mov.forEach(function (item) {
-                requiredObj.title = item.title;
-                requiredObj.excerpt = 'Release Date' + item.release_date
-                requiredObj.content = '<p> A Rated(18+): ' + item.adult +'</p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
-                    requiredObj.termNames.category = ['Indian Movie', 'Top Rated Movie'];
-                requiredObj.termNames.post_tag = ['Indian Movie', 'Top Rated Movie'];
-                finalPost.push(requiredObj);
-                requiredObj.title = null;
-                requiredObj.excerpt = null;
-                requiredObj.requiredObj =null;
-                requiredObj.termNames.category =null;
-                requiredObj.termNames.post_tag = null;
+                finalPost.push({
+                    title: item.title,
+                    excerpt: 'Release Date' + item.release_date,
+                    content: '<p> A Rated(18+): ' + item.adult + '/p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
+                    termNames: {
+                        category: ['Indian Movie', 'Upcoming Movie'],
+                        post_tag: ['Indian Movie', 'Upcoming Movie']
+                    },
+                    status: 'publish'
+                });
             });
             console.log(finalPost.length);
             option.url = 'https://api.themoviedb.org/3/movie/popular';
@@ -77,19 +81,19 @@ module.exports.movieNews = function () {
         .then(function (response) {
             var mov = JSON.parse(response.body).results;
             mov.forEach(function (item) {
-                requiredObj.title = item.title;
-                requiredObj.excerpt = 'Release Date' + item.release_date
-                requiredObj.content = '<p> A Rated(18+): ' + item.adult +'</p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
-                    requiredObj.termNames.category = ['Indian Movie', 'Popular Movie'];
-                requiredObj.termNames.post_tag = ['Indian Movie', 'Popular Movie'];
-                finalPost.push(requiredObj);
-                requiredObj.title = null;
-                requiredObj.excerpt = null;
-                requiredObj.requiredObj =null;
-                requiredObj.termNames.category =null;
-                requiredObj.termNames.post_tag = null;
+                finalPost.push({
+                    title: item.title,
+                    excerpt: 'Release Date' + item.release_date,
+                    content: '<p> A Rated(18+): ' + item.adult + '/p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
+                    termNames: {
+                        category: ['Indian Movie', 'Upcoming Movie'],
+                        post_tag: ['Indian Movie', 'Upcoming Movie']
+                    },
+                    status: 'publish'
+                });
             });
             console.log(finalPost.length);
+            console.log(JSON.stringify(finalPost));
             var wordpress = require("wordpress");
             var client = wordpress.createClient({
                 url: "http://proxap.in/",
