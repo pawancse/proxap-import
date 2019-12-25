@@ -35,7 +35,7 @@ module.exports.movieNews = function () {
             mov.forEach(function (item) {
                 requiredObj.title = item.title;
                 requiredObj.excerpt = 'Release Date' + item.release_date
-                requiredObj.content = '<p> A Rated(18+): ' + item.adult ? 'Yes' : 'No </p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
+                requiredObj.content = '<p> A Rated(18+): ' + item.adult + '/p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
                     requiredObj.termNames.category = ['Indian Movie', 'Upcoming Movie'];
                 requiredObj.termNames.post_tag = ['Indian Movie', 'Upcoming Movie'];
                 finalPost.push(requiredObj);
@@ -53,7 +53,7 @@ module.exports.movieNews = function () {
             mov.forEach(function (item) {
                 requiredObj.title = item.title;
                 requiredObj.excerpt = 'Release Date' + item.release_date
-                requiredObj.content = '<p> A Rated(18+): ' + item.adult ? 'Yes' : 'No </p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
+                requiredObj.content = '<p> A Rated(18+): ' + item.adult +'</p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
                     requiredObj.termNames.category = ['Indian Movie', 'Top Rated Movie'];
                 requiredObj.termNames.post_tag = ['Indian Movie', 'Top Rated Movie'];
                 finalPost.push(requiredObj);
@@ -71,7 +71,7 @@ module.exports.movieNews = function () {
             mov.forEach(function (item) {
                 requiredObj.title = item.title;
                 requiredObj.excerpt = 'Release Date' + item.release_date
-                requiredObj.content = '<p> A Rated(18+): ' + item.adult ? 'Yes' : 'No </p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
+                requiredObj.content = '<p> A Rated(18+): ' + item.adult +'</p><p>Popularity: ' + item.popularity + '</p><p>Overview: ' + item.overview + '</p>',
                     requiredObj.termNames.category = ['Indian Movie', 'Popular Movie'];
                 requiredObj.termNames.post_tag = ['Indian Movie', 'Popular Movie'];
                 finalPost.push(requiredObj);
