@@ -128,7 +128,6 @@ function loadPostInwordPress(content, category, client) {
         // is not specified
         status: 'publish'
     }
-    console.log(req);
     /*   var uri = post.urlToImage;
        return new Promise(function (resolve, reject) {
            return request.head(uri, function (err, res, body) {
@@ -176,7 +175,7 @@ function loadPostInwordPress(content, category, client) {
             console.log('Error:' + err);
             var wordpress = require("wordpress");
             client = wordpress.createClient({
-                url: "https://proxap.in/",
+                url: "http://proxap.in/",
                 username: "admin",
                 password: "a2XjCa$X$3"
             });

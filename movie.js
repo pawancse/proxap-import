@@ -8,8 +8,7 @@ module.exports.movieNews = function () {
         qs: {
             api_key: '0478ceb0e5f2d5cfa42ec1f989eba2d8',
             region: 'IN'
-        },
-        proxy: 'http://127.0.0.1:8888'
+        }
     };
     var requiredObj = {
         title: 'title',
@@ -79,7 +78,7 @@ module.exports.movieNews = function () {
             console.log(finalPost.length);
             var wordpress = require("wordpress");
             var client = wordpress.createClient({
-                url: "http://proxap.in/",
+                url: "https://proxap.in/",
                 username: "admin",
                 password: "a2XjCa$X$3"
             });
@@ -119,7 +118,6 @@ module.exports.movieNews = function () {
             // is not specified
             status: post.status
         }
-        console.log(req);
         /*   var uri = post.urlToImage;
            return new Promise(function (resolve, reject) {
                return request.head(uri, function (err, res, body) {
@@ -167,7 +165,7 @@ module.exports.movieNews = function () {
                 console.log('Error:' + err);
                 var wordpress = require("wordpress");
                 client = wordpress.createClient({
-                    url: "https://proxap.in/",
+                    url: "http://proxap.in/",
                     username: "admin",
                     password: "a2XjCa$X$3"
                 });
