@@ -3,6 +3,7 @@ const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('156ecc3cec95403a9cead389cfa4360a');
 var national = require('./currentApi');
 var googleNews = require('./googleNews');
+var movie = require('./movie');
 var hacker = require('./hackerNews');
 function startImport(category) {
     // To query /v2/top-headlines
@@ -68,6 +69,7 @@ app.use(haltOnTimedout)
 //For avoidong Heroku $PORT error
 app.get('/', function (request, response) {
     var result = 'App is running'
+    movie.movieNews();
     importContent(categories)
     national.nationalNews();
     googleNews.googleNews();

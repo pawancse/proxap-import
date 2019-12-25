@@ -8,6 +8,7 @@
     "express": "^4.17.1",
     "google-trends-api": "^4.9.0",
     "hackernews-api": "^1.0.0",
+    "imdb-api": "^4.0.3",
     "newsapi": "^2.4.0",
     "node-cron": "^2.0.3",
     "request": "^2.88.0",
