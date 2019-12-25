@@ -35,7 +35,7 @@ module.exports.hackerNews = function () {
             // "title" and "content" are the only required properties
             title: post.title,
             excerpt: post.source,
-            content: '<p> For complete news please follow article link on <a href="' + post.url + '" target="_blank">' + post.by + '</a></p><p> Category: ' + post.type + '</p>',
+            content: '<p> For complete news please follow article link on <a target="_blank" href="' + post.url + '">' + post.by + '</a></p><p> Category: ' + post.type + '</p>',
             //  tags: response.articles[0].source.name,
             //author: post.source.name,
             /*  categories: [

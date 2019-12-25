@@ -35,7 +35,7 @@ module.exports.googleNews = function () {
             // "title" and "content" are the only required properties
             title: post.title,
             excerpt: post.source,
-            content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a href="' + post.url + '" target="_blank">' + post.source + '</a></p><p> Category: ' + category + '</p>',
+            content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a target="_blank" href="' + post.url + '" >' + post.source + '</a></p><p> Category: ' + category + '</p>',
             //  tags: response.articles[0].source.name,
             //author: post.source.name,
             /*  categories: [

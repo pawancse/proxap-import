@@ -15,7 +15,7 @@ function startImport(category) {
             var sources = enSource.map(function (item) {
                 return item.id;
             })
-            var hours = new Date().getHours() - 2;
+            var hours = new Date().getHours() - 24;
             var month = new Date().getUTCMonth() + 1;
             var from = new Date().getUTCFullYear() + '-' + month + '-' + new Date().getUTCDate() + 'T' + hours + ':' + new Date().getUTCMinutes() + ':' + new Date().getUTCSeconds();
             return callNewsApi(sources, from, 1, category);
@@ -110,7 +110,7 @@ function loadPostInwordPress(content, category, client) {
         // "title" and "content" are the only required properties
         title: post.title,
         excerpt: post.source.name,
-        content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a href="' + post.url + '" target="_blank">' + post.source.name + '</a></p><p> Category: ' + category.category + '</p>',
+        content: '<p>' + contentToPost + '....</p>' + '<p> For complete news please follow article link on <a target="_blank" href="' + post.url + '">' + post.source.name + '</a></p><p> Category: ' + category.category + '</p>',
         //  tags: response.articles[0].source.name,
         //author: post.source.name,
         /*  categories: [
