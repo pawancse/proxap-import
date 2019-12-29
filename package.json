@@ -11,7 +11,9 @@
     "imdb-api": "^4.0.3",
     "newsapi": "^2.4.0",
     "node-cron": "^2.0.3",
+    "phantomjs-prebuilt": "^2.1.16",
     "request": "^2.88.0",
+    "webdriverio": "^5.18.0",
     "wordpress": "^1.4.1",
     "wpapi": "^1.2.1"
   }
