@@ -43,7 +43,7 @@ module.exports.hackerNews = function () {
               ],*/
             //  featured_media: response.articles[0].urlToImage,
             termNames: {
-                "category": [category],
+                "category": [category, post.source],
                 "post_tag": [post.type]
             },
             media_urls: [post.url],

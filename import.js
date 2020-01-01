@@ -151,7 +151,7 @@ function loadPostInwordPress(content, category, client) {
           ],*/
         //  featured_media: response.articles[0].urlToImage,
         termNames: {
-            "category": [category.category],
+            "category": [category.category, post.source],
             "post_tag": [category.category, post.source.name]
         },
         media_urls: [post.urlToImage],

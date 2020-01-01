@@ -48,7 +48,7 @@ module.exports.nationalNews = function () {
               ],*/
             //  featured_media: response.articles[0].urlToImage,
             termNames: {
-                "category": [category],
+                "category": [category, post.author],
                 "post_tag": [category]
             },
             media_urls: [post.image],
