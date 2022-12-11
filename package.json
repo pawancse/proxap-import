@@ -5,7 +5,7 @@
   "dependencies": {
     "connect-timeout": "^1.9.0",
     "currentsapi": "^0.1.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "google-trends-api": "^4.9.0",
     "hackernews-api": "^1.0.0",
     "imdb-api": "^4.0.3",
